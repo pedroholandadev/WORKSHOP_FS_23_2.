@@ -1,0 +1,63 @@
+CREATE DATABASE empresa;
+USE empresa;
+-- CRIANDO TABELAS 
+CREATE TABLE funcionarios(
+	nome VARCHAR(100) NOT NULL,
+    idade INT NOT NULL,
+    cpf VARCHAR(100) PRIMARY KEY
+    
+);
+
+CREATE TABLE salario(
+	vendas FLOAT PRIMARY KEY,
+	produtividade VARCHAR(100),
+    pontualidade VARCHAR(100)
+   
+);
+
+CREATE TABLE parcerias(
+	nome VARCHAR(100) NOT NULL,
+    telefone VARCHAR(100) NOT NULL,
+    cnpj VARCHAR(100) PRIMARY KEY
+);
+
+-- ADICIONANDO COLUNAS NOVAS EM CADA TABELA
+ALTER TABLE funcionarios ADD COLUMN endereço VARCHAR(100) NOT NULL;
+ALTER TABLE salario ADD COLUMN horas_extras INT;
+ALTER TABLE parcerias ADD COLUMN rede_social VARCHAR(100);
+
+-- INSERINDO DADOS EM CADA TABELA
+INSERT INTO
+funcionarios (nome, idade, cpf, endereço)
+VALUES
+('mogli', '18', '111-111-111.90', 'rua monkeydluffy'),
+('dudu', '19', '111-111-111.91', 'rua inosuke'),
+('pedro', '18', '111-111-111.92', 'rua naruto uzumaki');
+
+INSERT  INTO 
+salario(vendas, produtividade, pontualidade, horas_extras)
+VALUES
+('140', 'produtivo', 'pontual', '2'),
+('100', 'nao produtivo', 'pontual', '5'),
+('150', 'produtivo', 'pontual', '3');
+
+INSERT INTO parcerias (nome, telefone, cnpj , rede_social)
+VALUES
+('henrique', '83996169619', '00.623.904/0001-73', '@parceria'),
+('holanda', '83996169618', '00.623.904/0001-74', '@parceria1'),
+('joaquim', '83996169619', '00.623.904/0001-75', '@parceria2');
+
+-- REMOVENDO COLUNAS DE TODAS AS TABELAS
+ALTER TABLE funcionarios DROP COLUMN endereço;
+ALTER TABLE salario DROP COLUMN pontualidade;
+ALTER TABLE parcerias DROP COLUMN nome;
+
+-- MOSTRANDO OS CONTEUDOS DE CADA TABELA
+SELECT * FROM funcionarios;
+SELECT * FROM salario;
+SELECT * FROM parcerias;
+
+-- MOSTRANDO CONTEUDOS DAS TABELAS COM CONDIÇÕES
+SELECT idade FROM funcionarios WHERE idade = 18;
+SELECT vendas FROM salario WHERE vendas > 130;
+SELECT rede_social FROM parcerias WHERE cnpj = '00.623.904/0001-73';
